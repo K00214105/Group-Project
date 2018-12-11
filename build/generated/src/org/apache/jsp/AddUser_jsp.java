@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import model.User;
+import model.Course;
 
 public final class AddUser_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -42,6 +43,7 @@ public final class AddUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -90,14 +92,19 @@ public final class AddUser_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <label>Bio</label>\n");
       out.write("                    <input type=\"text\" name=\"bio\" id=\"bio\"/>\n");
       out.write("                    <br>\n");
+      out.write("                    <label>Course</label>\n");
       out.write("\n");
+      out.write("                    <select name=\"course\" id=\"course\">\n");
       out.write("\n");
+      out.write("                        <option >IDM</option>\n");
+      out.write("                        <option >ISD</option>\n");
       out.write("\n");
-      out.write("\n");
-      out.write("                    <input type=\"submit\" name=\"menu\" value=\"Save\" />\n");
-      out.write("                    <input type=\"reset\" />\n");
-      out.write("\n");
+      out.write("                    </select>\n");
       out.write("                </form>\n");
+      out.write("\n");
+      out.write("                <input type=\"submit\" name=\"menu\" value=\"Save\" />\n");
+      out.write("                <input type=\"reset\" />\n");
+      out.write("\n");
       out.write("            </div>\n");
       out.write("        </div\n");
       out.write("        <script\n");

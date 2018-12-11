@@ -31,10 +31,11 @@
                 <div class="header">
 
                     <div class="loginSignUp">
-                        <a class="username" href="profile.html"><img src="img/039.jpeg" alt="Profile Picture">${user.username} </a>
-                        <a href="login.jsp">Sign In</a>
-                        <a href="AddUser.jsp">Sign Up</a>
-                        <a href="#">Log Out</a>
+                        <form action="UserController" class="login-form">                                      
+                                <input type="submit" name="menu" value="Login" />              
+                                <input type="submit" name="menu" value="SignUp" />
+
+                            </form>
                     </div>
 
                     <div class="logo">

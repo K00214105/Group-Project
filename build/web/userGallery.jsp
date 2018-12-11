@@ -31,11 +31,11 @@
                 <div class="header">
 
                     <div class="loginSignUp">
-                        <form action="UserController" class="login-form">                                      
-                                <input type="submit" name="menu" value="Login" />              
-                                <input type="submit" name="menu" value="SignUp" />
-
-                            </form>
+                        <a class="username" href="profile.html"><img src="img/039.jpeg" alt="Profile Picture">${user.username}</a>
+                        <form action="UserController" class="login-form">  
+                              <input type="submit" name="menu" value="Logout" />
+                                
+                          </form>
                     </div>
 
                     <div class="logo">
@@ -48,10 +48,10 @@
                         <label for="toggle">&#9776;</label>
                         <input type="checkbox" id="toggle" />
                         <div class="menu">
-                            <a  href="home.jsp">Home</a>
-                            <a href="profile.jsp">Profile</a>
-                            <a class="active" href="gallery.jsp">Gallery</a>
-                            <a href="showPage.jsp">Show</a>
+                            <a  href="userHome.jsp">Home</a>
+                            <a href="userProfile.jsp">Profile</a>
+                            <a class="active" href="userGallery.jsp">Gallery</a>
+                            <a href="userShowPage.jsp">Show</a>
 
                             <a href="adminArea.jsp">Admin Area</a>
                             <input class="search" type="text" placeholder="Search..">

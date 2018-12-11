@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import model.User;
 import org.jboss.weld.config.ConfigurationKey;
 
@@ -57,12 +58,13 @@ public class UserController extends HttpServlet {
             case "Save":
                 System.out.println("switch save");
                 ProcessSave(request, session);
-                gotoPage("/home.jsp", request, response);
+                gotoPage("/userHome.jsp", request, response);
                 break;
 
             case "Logout":
+                System.out.println("Log out");
                 session.invalidate();
-                gotoPage("/Homepage.jsp", request, response);
+                gotoPage("/home.jsp", request, response);
                 break;
 
             case "Process Login":
@@ -76,7 +78,7 @@ public class UserController extends HttpServlet {
                     gotoPage("/login.jsp", request, response);
                 } else {
                     System.out.println("Logged in");
-                    gotoPage("/home.jsp", request, response);
+                    gotoPage("/userHome.jsp", request, response);
                 }
                 break;
 
@@ -86,7 +88,7 @@ public class UserController extends HttpServlet {
 
             case "Save User Details":
                 boolean worked = ProcessUserUpdate(request, user, session);
-                gotoPage("/home.jsp", request, response);
+                gotoPage("/userHome.jsp", request, response);
                 break;
 
             case "Delete User Check":
@@ -105,8 +107,10 @@ public class UserController extends HttpServlet {
 
                 UserDetails(request, user, session);
 
-                gotoPage("/home.jsp", request, response);
+                gotoPage("/userHome.jsp", request, response);
                 break;
+                
+            
 
             default:
                 gotoPage("/invalid.jsp", request, response);
@@ -159,8 +163,9 @@ public class UserController extends HttpServlet {
         String profile_pic = request.getParameter("profile_pic");
         String password = request.getParameter("password");
         String bio = request.getParameter("bio");
+        String course = request.getParameter("course");
 
-        User us = new User(fName, lName, email, username, profile_pic, password, bio);
+        User us = new User(fName, lName, email, username, profile_pic, password, bio, course);
         us.saveToDatabase();
 
         session.setAttribute("user", us);
@@ -234,4 +239,5 @@ public class UserController extends HttpServlet {
         session.setAttribute("user", u);
     }
 
+     
 }

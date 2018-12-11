@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.User"%>
+<%@page import="model.Course"%>
 
 <!DOCTYPE html>
 <html>
@@ -48,14 +49,19 @@
                     <label>Bio</label>
                     <input type="text" name="bio" id="bio"/>
                     <br>
+                    <label>Course</label>
 
+                    <select name="course" id="course">
 
+                        <option >IDM</option>
+                        <option >ISD</option>
 
+                    </select>
+               
 
-                    <input type="submit" name="menu" value="Save" />
-                    <input type="reset" />
-
-                </form>
+                <input type="submit" name="menu" value="Save" />
+                <input type="reset" />
+ </form>
             </div>
         </div
         <script

@@ -31,11 +31,11 @@
                 <div class="header">
 
                     <div class="loginSignUp">
-                        <a class="username" href="#"><img src="img/039.jpeg" alt="Profile Picture">User Name</a>
-                        <a href="signIn.html">Sign In</a>
-                        <a href="signUp.html">Sign Up</a>
-                        <a href="#">Log Out</a>
-                        <a href="#"></a>
+                        <form action="UserController" class="login-form">                                      
+                                <input type="submit" name="menu" value="Login" />              
+                                <input type="submit" name="menu" value="SignUp" />
+
+                            </form>
                     </div>
 
                     <div class="logo">
@@ -82,7 +82,7 @@
 
                 <div class="filters">
                     <div class="form">
-                        <form>
+                        <form class="filter">
                             <fieldset>
                                 <p>
                                     <select class="myList">
@@ -197,7 +197,7 @@
 
                 <div class="filters">
                     <div class="form">
-                        <form>
+                        <form class="filter">
                             <fieldset>
                                 <p>
                                     <select class="myList">
@@ -314,7 +314,7 @@
 
                 <div class="filters">
                     <div class="form">
-                        <form>
+                        <form class="filter">
                             <fieldset>
                                 <p>
                                     <select class="myList">
@@ -421,13 +421,6 @@
 
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
 
                 <div class="footer">

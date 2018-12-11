@@ -21,11 +21,12 @@ public class User implements Serializable {
     private String password;
     private String bio;
     private String profilePic;
+    private String course;
 
     public User() {
     }
 
-    public User(String fname, String lName, String email, String username, String profilePic, String password, String bio) {
+    public User(String fname, String lName, String email, String username, String profilePic, String password, String bio, String course) {
         this.fName = fname;
         this.lName = lName;
         this.email = email;
@@ -33,7 +34,7 @@ public class User implements Serializable {
         this.profilePic = profilePic;
         this.password = password;
         this.bio = bio;
-       
+        this.course = course;
 
     }
 
@@ -171,6 +172,17 @@ public class User implements Serializable {
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
+    
+      public String getCourse() {
+        return course;
+    }
+
+    /**
+     * @param course the course to set
+     */
+    public void setCourse(String course) {
+        this.course = course;
+    }
 
     public User Login(String username, String password) {
         System.out.println("in User login");
@@ -213,7 +225,7 @@ public class User implements Serializable {
 
         Connection connection = DatabaseUtilityClass.getConnection();
         System.out.println("in savetoDB");
-        String sql = "INSERT INTO users (f_name,l_name, email, username, profile_Pic, password,bio) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO users (f_name,l_name, email, username, profile_Pic, password,bio, course) VALUES (?,?,?,?,?,?,?,?)";
         String query = "SELECT LAST_INSERT_ID()";
         try {
 
@@ -226,6 +238,7 @@ public class User implements Serializable {
             ps.setString(5, this.getProfilePic());
             ps.setString(6, this.getPassword());
             ps.setString(7, this.getBio());
+            ps.setString(8, this.getCourse());
             System.out.println(ps);
 
             ps.executeUpdate();
@@ -362,4 +375,9 @@ public class User implements Serializable {
 //        }
 //        return this;
 //    }
+
+    /**
+     * @return the course
+     */
+  
 }
