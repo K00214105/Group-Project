@@ -8,6 +8,7 @@
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/deleteProject.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/userGallery.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/profile.jsp</file>
+            <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/controller/UploadController.java</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/model/Course.java</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/controller/UserController.java</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/home.jsp</file>
@@ -18,9 +19,11 @@
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/invalid.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/userShowPage.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/login.jsp</file>
+            <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/model/Uploads.java</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/deleteProfile.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/adminArea.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/editProfile.jsp</file>
+            <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/model/User.java</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/web/userHome.jsp</file>
             <file>file:/E:/College%20Yr%203/Group%20Project/Code/litGallery/src/java/controller/CourseController.java</file>
         </group>

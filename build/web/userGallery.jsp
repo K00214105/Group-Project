@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.User"%>
+<%@page import="model.Uploads"%>
 
 
 
@@ -16,7 +17,7 @@
     <head>
         <meta charset="UTF-8">
         <title>LIT Gallery - Gallery Page</title>
-          <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
+        <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <!-- Add icon library -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -33,9 +34,9 @@
                     <div class="loginSignUp">
                         <a class="username" href="profile.html"><img src="img/039.jpeg" alt="Profile Picture">${user.username}</a>
                         <form action="UserController" class="login-form">  
-                              <input type="submit" name="menu" value="Logout" />
-                                
-                          </form>
+                            <input type="submit" name="menu" value="Logout" />
+
+                        </form>
                     </div>
 
                     <div class="logo">
@@ -77,9 +78,13 @@
                 </div>
 
                 <div class="flex-containerprofile">
-                    <a href="editGallery.html"><button>Edit Gallery</button></a>
-                    <a href="addProject.html"><button>Upload Project</button></a>
-                    <a href="deleteProject.html"><button>Delete Project</button></a>
+                    <form action="UploadController" method="get" class="login-form" name="Login"> 
+                        <a href="editGallery.html"><button>Edit Gallery</button></a>
+                        
+                        <input type="submit" name="menu" value="Add Upload" />
+                        
+                        <a href="deleteProject.html"><button>Delete Project</button></a>
+                    </form>
                 </div>
 
                 <div class="main">
