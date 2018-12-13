@@ -75,8 +75,8 @@
 
                 <div class="flex-containerprofile">
                     <a href="editProfile.jsp"><button>Edit Profile</button></a>
-                    <a href="addProject.jsp"><button>Upload Project</button></a>
-                    <a href="deleteProject.jsp"><button>Delete Project</button></a>
+               <a href="addProject.jsp"><button>Upload Project</button></a>
+                <a href="deleteProject.jsp"><button>Delete Project</button></a>
                 </div>
 
 

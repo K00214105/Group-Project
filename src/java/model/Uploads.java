@@ -41,11 +41,12 @@ public class Uploads implements Serializable {
         this.description = description;
     }
 
-    public Uploads(String image, String title, String description, int userid) {
+    public Uploads(String image, String title, String description, int userId) {
          this.image = image;
         this.title = title;
         this.description = description;
         this.userId = userId;
+        System.out.println("Construtor :" + this.userId);
     }
 
     /**
@@ -221,7 +222,7 @@ public Uploads getUploadDetails(int id) {
     }
 
     public boolean deleteUpload(int id) {
-        
+        System.out.println("uploads delete upload");
         Uploads u = null;
         Connection connection = DatabaseUtilityClass.getConnection();
         PreparedStatement ps = null;

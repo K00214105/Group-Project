@@ -27,7 +27,7 @@ public class UploadController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
         User user = (User) session.getAttribute("user");
         if (user == null) {
@@ -47,19 +47,40 @@ public class UploadController extends HttpServlet {
                 Uploads uploads = new Uploads();
                 ArrayList<Uploads> alluploads = new ArrayList<>();
                 alluploads = uploads.getAllUploads();
-                session.setAttribute("alluploadss", alluploads);
-                gotoPage("/Homepage.jsp", request, response);
+                session.setAttribute("alluploads", alluploads);
+                gotoPage("/userGallery.jsp", request, response);
                 break;
-                
+
             case "Add Upload":
                 System.out.println("In Switch add upload");
                 gotoPage("/addProject.jsp", request, response);
                 break;
-                
+
             case "Save Upload":
                 System.out.println("switch save upload");
                 ProcessSave(request, user, session);
                 gotoPage("/userHome.jsp", request, response);
+                break;
+
+            case "Delete Upload":
+                System.out.println("delete upload");
+                String snid = request.getParameter("uploadId");
+                int nid = Integer.parseInt(snid);
+                Uploads uploads2 = new Uploads();
+                boolean worked = uploads2.deleteUpload(nid);
+
+                ArrayList<Uploads> alluploads2 = new ArrayList<>();
+                alluploads2 = uploads2.getAllUploads();
+
+                session.setAttribute("alluploads", alluploads2);
+                gotoPage("/userHome.jsp", request, response);
+
+                break;
+
+            case "Save User Details":
+//                worked = ProcessUpdate(request, user, session);
+//                gotoPage("/UserHomePage.jsp", request, response);
+
                 break;
         }
     }
@@ -73,16 +94,17 @@ public class UploadController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 //User userid,
-    private void ProcessSave(HttpServletRequest request, User userid, HttpSession session) {
+
+    private void ProcessSave(HttpServletRequest request, User localuser, HttpSession session) {
         String image = request.getParameter("image");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
-        
+
         User user = (User) session.getAttribute("user");
-        Uploads uploads = new Uploads(image, title, description, user.getUserid());
-        System.out.println("process save id: "+user.getUserid());
+        Uploads uploads = new Uploads(image, title, description, localuser.getUserid());
+        System.out.println("process save id: " + localuser.getUserid());
         uploads = uploads.saveToDatabase();
-        
+
         session.setAttribute("upload", uploads);
         //System.out.println("userid" + us.getUserid());
     }

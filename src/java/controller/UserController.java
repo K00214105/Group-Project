@@ -145,7 +145,7 @@ public class UserController extends HttpServlet {
         User us = new User(username, password);
         us.Login(username, password);
         session.setAttribute("user", us);
-
+        System.out.println("User id: " + us.getUserid());
         if (us.getUserid() != 0) {
             return true;
         } else {

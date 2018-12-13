@@ -76,15 +76,16 @@
                 <div class="title">
                     <h3>Gallery</h3>
                 </div>
-
+ 
                 <div class="flex-containerprofile">
-                    <form action="UploadController" method="get" class="login-form" name="Login"> 
+                    <form action="UploadController" method="get" class="login-form" name="Login">
                         <a href="editGallery.html"><button>Edit Gallery</button></a>
                         
                         <input type="submit" name="menu" value="Add Upload" />
-                        
+                        <input type="submit" name="menu" value="Delete Upload" />
                         <a href="deleteProject.html"><button>Delete Project</button></a>
                     </form>
+
                 </div>
 
                 <div class="main">
@@ -124,179 +125,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="galleryItem">
-                        <div class="panelGalleryMain">
-                            <img src="img/039.jpeg" alt="#####">
-                        </div>
-
-                        <div class="descRating">
-                            <div class="panelGallery">
-                                <h3>Picture Title</h3>
-                                <h4 class="username">User Name</h4>
-                                <h4 class="Date">Upload Date</h4>
-                                <p> ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                </p>
-                            </div>
-
-                            <div class="panelGallery">
-                                <h3>Comments</h3>
-                                <form class="comments" method="get">
-                                    <textarea rows="4" cols="25"></textarea>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-
-                            <div class="panelGalleryRate">
-                                <h3>Rating</h3>
-                                <h1>3/5</h1>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="galleryItem">
-                        <div class="panelGalleryMain">
-                            <img src="img/039.jpeg" alt="#####">
-                        </div>
-
-                        <div class="descRating">
-                            <div class="panelGallery">
-                                <h3>Picture Title</h3>
-                                <h4 class="username">User Name</h4>
-                                <h4 class="Date">Upload Date</h4>
-                                <p> ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                </p>
-                            </div>
-
-                            <div class="panelGallery">
-                                <h3>Comments</h3>
-                                <form class="comments" method="get">
-                                    <textarea rows="4" cols="25"></textarea>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-
-                            <div class="panelGalleryRate">
-                                <h3>Rating</h3>
-                                <h1>3/5</h1>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="galleryItem">
-                        <div class="panelGalleryMain">
-                            <img src="img/039.jpeg" alt="#####">
-                        </div>
-
-                        <div class="descRating">
-                            <div class="panelGallery">
-                                <h3>Picture Title</h3>
-                                <h4 class="username">User Name</h4>
-                                <h4 class="Date">Upload Date</h4>
-                                <p> ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                </p>
-                            </div>
-
-                            <div class="panelGallery">
-                                <h3>Comments</h3>
-                                <form class="comments" method="get">
-                                    <textarea rows="4" cols="25"></textarea>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-
-                            <div class="panelGalleryRate">
-                                <h3>Rating</h3>
-                                <h1>3/5</h1>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="galleryItem">
-                        <div class="panelGalleryMain">
-                            <img src="img/039.jpeg" alt="#####">
-                        </div>
-
-                        <div class="descRating">
-                            <div class="panelGallery">
-                                <h3>Picture Title</h3>
-                                <h4 class="username">User Name</h4>
-                                <h4 class="Date">Upload Date</h4>
-                                <p> ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                </p>
-                            </div>
-
-                            <div class="panelGallery">
-                                <h3>Comments</h3>
-                                <form class="comments" method="get">
-                                    <textarea rows="4" cols="25"></textarea>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-
-                            <div class="panelGalleryRate">
-                                <h3>Rating</h3>
-                                <h1>3/5</h1>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="galleryItem">
-                        <div class="panelGalleryMain">
-                            <img src="img/039.jpeg" alt="#####">
-                        </div>
-
-                        <div class="descRating">
-                            <div class="panelGallery">
-                                <h3>Picture Title</h3>
-                                <h4 class="username">User Name</h4>
-                                <h4 class="Date">Upload Date</h4>
-                                <p> ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-                                </p>
-                            </div>
-
-                            <div class="panelGallery">
-                                <h3>Comments</h3>
-                                <form class="comments" method="get">
-                                    <textarea rows="4" cols="25"></textarea>
-                                    <input type="submit" value="Submit" />
-                                </form>
-                            </div>
-
-                            <div class="panelGalleryRate">
-                                <h3>Rating</h3>
-                                <h1>3/5</h1>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                        </div>
-                    </div>
+                  
+                    
 
                 </div>
-                .
+                
                 <div class="footer">
                     <p>Terms and Conditions</p>
                     <div class="logos">
