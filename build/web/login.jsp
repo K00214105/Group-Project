@@ -1,8 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : 19-Dec-2016, 18:30:35
-    Author     : AMarie
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -18,22 +14,20 @@
     <body>
 
         <div class="login-page">
-            <div class="logo">
-                <a href="index.html">
-                    <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
-                </a>
+            <div class="logo">             
+               <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">             
             </div>
             <h1>Sign In</h1>
             <div class="form">
-                <form action="UserController" method="get" class="login-form" name="Login">
+                <form action="UserController" method="post" class="login-form" name="Login">
                     <br>
                     <label>Username</label>
                     <input type="text" name="username" id="username"/>
                     <br>
                     <label>Password</label>
-                    <input type="password" name="password" id="passwood"/>
+                    <input type="password" name="password" id="password"/>
                     <br>
-                    <input type="submit" name="menu" value="Process Login"  />
+                    <input type="submit" name="menu" value="Process Login"/>
 
                 </form>
             </div>

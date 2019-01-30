@@ -1,14 +1,11 @@
-<%-- 
-    Document   : register
-    Created on : 07-Dec-2016, 21:39:41
-    Author     : AMarie
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.User"%>
-
+<%@page import="model.Uploads"%>
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -22,15 +19,11 @@
     </head>
 
     <body>
-
-        <div class="pageWrapper">
-            <form action="UserController" method="get" class="login-form" name="Get User Details">
+        <div class="pageWrapper">   
                 <div class="grid">
                     <div class="header">
-
                         <div class="loginSignUp">
-
-                            <a class="username" href="profile.html" ><img src="img/039.jpeg" alt="Profile Picture" >${user.username}</a>
+                            <a class="username" href="profile.html" ><img src="${pageContext.request.contextPath}/img/${user.profilePic}" alt="Profile Picture" >${user.username}</a>
                           <form action="UserController" class="login-form">  
                               <input type="submit" name="menu" value="Logout" />
                                 
@@ -40,17 +33,17 @@
 
                         <div class="logo">
                             <a href="index.html">
-                                <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
+                                <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
                             </a>
                         </div>
-                        </form>
+                        
                         <div class="nav">
                             <label for="toggle">&#9776;</label>
                             <input type="checkbox" id="toggle" />
                             <div class="menu">
-                                <a class="active" href="userHome.jsp">Home</a>
-                                <a href="userProfile.jsp">Profile</a>
-                                <a href="userGallery.jsp">Gallery</a>
+                                <a class="active" href="UserController?menu=Home">Home</a>
+                                <a href="UserController?menu=Profile">Profile</a>
+                                <a href="UploadController?menu=getUserUploads">Gallery</a>
                                 <a href="userShowPage.jsp">Show</a>
                                 <a href="adminArea.jsp">Admin Area</a>
                                 <input class="search" type="text" placeholder="Search..">
@@ -61,13 +54,13 @@
 
                     <div class="breadCrumb">
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="UserController?menu=Home">Home</a></li>
                             <li></li>
                         </ul>
                     </div>
 
                     <div class="slideshow">
-                        <img class="slideshowImg" src="img/banner.png" alt="Banner Pic">
+                        <img class="slideshowImg" src="${pageContext.request.contextPath}/img/banner.png" alt="Banner Pic">
                     </div>
 
                     <div class="title">
@@ -111,546 +104,30 @@
                         </div>
                     </div>
 
-                    <div class="main">
-
+                    <div class="main">                        
+                    <c:forEach var="uploads" items="${allUploads}">
                         <div class="panel">
-                            <a href="gallery.html"><img src="img/039.jpeg" alt="#####"></a>
-                            <h3>Title Length is 24 chars</h3>
-                            <a href="profile.html">
-                                <h4>User Name length is 28 chars</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> 240 chars - adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb </p>
+                            <a href="UploadController?menu=getUploadView&uploadID=${uploads.uploadID}"><img src="${pageContext.request.contextPath}/img/${uploads.image}" alt="#####"></a>
+                            <h3>Title: ${uploads.title}</h3>
+                            
+                                <h3>User Name: ${uploads.username}</h3>
+                                <h3>upload id: ${uploads.uploadID}</h3>                      
+                                <p>Rating: ${uploads.rating}/5</p>
+                                <p>Description: ${uploads.description}  </p>
                         </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/088.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/039.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/088.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/039.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/088.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/039.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/088.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/039.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/088.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/039.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/041.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/083.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/086.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
-                        <div class="panel">
-                            <img src="img/087.jpeg" alt="#####">
-                            <h3>pic title</h3>
-                            <a href="profile.html">
-                                <h4>User Name</h4>
-                            </a>
-                            <h4><a href="gallery.html">Tag1, Tag2, Tag3</a></h4>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-                        </div>
-
+                     </c:forEach>                     
                     </div>
-                    .
+                    
                     <div class="footer">
                         <p>Terms and Conditions</p>
                         <div class="logos">
-                            <a href="#"><img src="img/facebook-logo-circle-transparent.png" alt="Facebook Logo"></a>
-                            <a href="#"><img src="img/twitterTP.png" alt="Twitter Logo"></a>
-                            <a href="#"><img src="img/litTP.png" alt="LIT Logo"></a>
-                            <a href="#"><img src="img/instaTP.jpg.png" alt="Instagram Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/facebook-logo-circle-transparent.png" alt="Facebook Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/twitterTP.png" alt="Twitter Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/litTP.png" alt="LIT Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/instaTP.jpg.png" alt="Instagram Logo"></a>
                         </div>
                     </div>
                 </div>
-
         </div>
 
 

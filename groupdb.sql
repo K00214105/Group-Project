@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2018 at 04:33 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Jan 29, 2019 at 08:36 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,11 +62,17 @@ INSERT INTO `courses` (`course_id`, `course_name`, `description`, `url`) VALUES
 
 CREATE TABLE `enteries` (
   `upload_id` int(11) NOT NULL,
-  `date_uploaded` datetime NOT NULL,
-  `title` varchar(28) NOT NULL,
-  `decription` varchar(300) NOT NULL,
-  `file_name` varchar(60) NOT NULL
+  `showID` int(11) NOT NULL,
+  `date_uploaded` date NOT NULL,
+  `price` decimal(65,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enteries`
+--
+
+INSERT INTO `enteries` (`upload_id`, `showID`, `date_uploaded`, `price`) VALUES
+(25, 1, '2019-01-29', '1');
 
 -- --------------------------------------------------------
 
@@ -95,6 +101,13 @@ CREATE TABLE `shows` (
   `image` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `shows`
+--
+
+INSERT INTO `shows` (`show_id`, `date_of_show`, `duration`, `title`, `descripton`, `image`) VALUES
+(1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0', '0', '0');
+
 -- --------------------------------------------------------
 
 --
@@ -117,20 +130,21 @@ CREATE TABLE `uploads` (
   `image` varchar(20) NOT NULL,
   `title` varchar(20) NOT NULL,
   `description` varchar(20) NOT NULL,
-  `user_Id` int(20) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `Rating` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `uploads`
 --
 
-INSERT INTO `uploads` (`uploadId`, `image`, `title`, `description`, `user_Id`) VALUES
-(2, 'd', 'd', 'd', 0),
-(3, 'd', 'd', 'd', 0),
-(4, 'd', 'd', 'd', 0),
-(5, 'd', 'd', 'd', 0),
-(6, 'd', 'd', 'd', 0),
-(7, 'e', 'e', 'e', 0);
+INSERT INTO `uploads` (`uploadId`, `image`, `title`, `description`, `user_id`, `Rating`) VALUES
+(25, '094.jpeg', 'ggggggggggggggg', 'adddd', 6, 5),
+(26, '099.jpeg', 'aaaaaaaa', 'aaaaaaaaaaaa', 6, 3),
+(29, '091.jpeg', 'sds', 'sds', 6, 2),
+(30, '041.jpeg', 'ggggggggggggggg', 'asdkj', 6, 1),
+(34, '091.jpeg', 'ddd', 'ddd', 9, 0),
+(48, 'a.jpeg', 'a', 'a', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -147,8 +161,8 @@ CREATE TABLE `users` (
   `username` varchar(28) NOT NULL,
   `profile_pic` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `bio` varchar(300) NOT NULL,
-  `course` varchar(20) NOT NULL
+  `bio` varchar(500) NOT NULL,
+  `course` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -156,13 +170,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `f_name`, `l_name`, `email`, `AccountType`, `username`, `profile_pic`, `password`, `bio`, `course`) VALUES
-(3, 'Dan', 'O\' Keeffe', 'k0@student.lit.ie', 'Student', 'dok', 'aaa', 'Daniel', 'dddddddddd', ''),
-(5, 'Evan', 'Grimes', 'E@g.c', 'Student', 'Egg', 'aa', 'egg', 'f', ''),
-(6, 'dd', 'dd', 'd@c.c', 'Student', 'd', 'd', 'd', 'd', ''),
-(9, 'DYLON', 'mccABE', 'd@c.c', 'Student', 'Dylon the Pylon', 'sss', 'a', 'addddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', ''),
-(10, 'q', 'q', 'q', 'Student', 'q', 'q', 'q', 'q', 'course_id'),
-(11, 'w', 'w', 'w', 'Student', 'w', 'w', 'w', 'w', 'ISD'),
-(12, 'c', 'c', 'c', 'Student', 'c', 'c', 'c', 'c', 'ISD');
+(6, 'c', 'Mc Creedd', 'd@c.cddddf', 'Student', 'd', 'profileTemp.jpg', 'd', 'llorum ipsum llorum ipsum llorum ipsum llorum ipsum', 'IDM'),
+(9, 'DYLON', 'mccABE', 'd@c.c', 'Student', 'Dylon the Pylon', 'profileTemp.jpg', 'a', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ', 'IDM'),
+(12, 'Admin', 'Admin', 'c@c.c', 'Admin', 'Admin', 'profileTemp.jpg', 'Admin', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ', ''),
+(13, 'Joe', 'Hayes', 'YO@Yo.com', 'Student', 'JOE Champion', 'profileTemp.jpg', 'joe', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ', 'ISD');
 
 --
 -- Indexes for dumped tables
@@ -178,7 +189,8 @@ ALTER TABLE `courses`
 -- Indexes for table `enteries`
 --
 ALTER TABLE `enteries`
-  ADD PRIMARY KEY (`upload_id`);
+  ADD PRIMARY KEY (`upload_id`,`showID`),
+  ADD KEY `showID` (`showID`);
 
 --
 -- Indexes for table `rating`
@@ -202,7 +214,8 @@ ALTER TABLE `tags`
 -- Indexes for table `uploads`
 --
 ALTER TABLE `uploads`
-  ADD PRIMARY KEY (`uploadId`);
+  ADD PRIMARY KEY (`uploadId`),
+  ADD KEY `fk_userid_uploads` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -224,7 +237,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `enteries`
 --
 ALTER TABLE `enteries`
-  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `upload_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `rating`
@@ -236,7 +249,7 @@ ALTER TABLE `rating`
 -- AUTO_INCREMENT for table `shows`
 --
 ALTER TABLE `shows`
-  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `show_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -248,13 +261,30 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `uploads`
 --
 ALTER TABLE `uploads`
-  MODIFY `uploadId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `uploadId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `enteries`
+--
+ALTER TABLE `enteries`
+  ADD CONSTRAINT `enteries_ibfk_1` FOREIGN KEY (`upload_id`) REFERENCES `uploads` (`uploadId`),
+  ADD CONSTRAINT `enteries_ibfk_2` FOREIGN KEY (`showID`) REFERENCES `shows` (`show_id`);
+
+--
+-- Constraints for table `uploads`
+--
+ALTER TABLE `uploads`
+  ADD CONSTRAINT `fk_userid_uploads` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

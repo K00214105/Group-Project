@@ -20,7 +20,7 @@
         <div class="login-page">
             <div class="logo">
                 <a href="index.html">
-                    <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
+                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
                 </a>
             </div>
             <h1>Delete Profile</h1>

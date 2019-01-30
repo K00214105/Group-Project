@@ -1,8 +1,4 @@
-<%-- 
-    Document   : register
-    Created on : 07-Dec-2016, 21:39:41
-    Author     : AMarie
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,9 +15,9 @@
     <body>
         <div class="login-page">
             <div class="logo">
-                <a href="index.html">
-                    <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
-                </a>
+                
+                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
+               
             </div>
             <h1>Sign Up</h1>
             <div class="form">
@@ -35,7 +31,7 @@
                     <input type="text" name="lName" id="lName"/>
                     <br>
                     <label>Email</label>
-                    <input type="text" name="email" id="email"/>
+                    <input type="email" name="email" id="email"/>
                     <br>
                     <label>User name</label>
                     <input type="text" name="username" id="username"/>
@@ -53,8 +49,8 @@
 
                     <select name="course" id="course">
 
-                        <option >IDM</option>
-                        <option >ISD</option>
+                        <option name="course" id="course" value = "IDM">IDM</option>
+                        <option name="course" id="course" value = "ISD">ISD</option>
 
                     </select>
                

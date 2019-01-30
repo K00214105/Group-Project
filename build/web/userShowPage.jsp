@@ -31,7 +31,7 @@
                 <div class="header">
 
                     <div class="loginSignUp">
-                        <a class="username" href="#"><img src="img/039.jpeg" alt="Profile Picture">${user.username}</a>
+                        <a class="username" href="#"><img src="${pageContext.request.contextPath}/img/${user.profilePic}" alt="Profile Picture">${user.username}</a>
                         <form action="UserController" class="login-form">  
                               <input type="submit" name="menu" value="Logout" />
                                 
@@ -40,7 +40,7 @@
 
                     <div class="logo">
                         <a href="index.html">
-                            <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
+                            <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
                         </a>
                     </div>
 
@@ -48,9 +48,9 @@
                         <label for="toggle">&#9776;</label>
                         <input type="checkbox" id="toggle" />
                         <div class="menu">
-                            <a  href="userHome.jsp">Home</a>
-                            <a href="userProfile.jsp">Profile</a>
-                            <a href="userGallery.jsp">Gallery</a>
+                            <a  href="UserController?menu=Home">Home</a>
+                            <a href="UserController?menu=Profile">Profile</a>
+                            <a href="UploadController?menu=getUserUploads">Gallery</a>
                             <a class="active" href="userShowPage.jsp">Show</a>
 
                             <a  href="adminArea.jsp">Admin Area</a>
@@ -63,7 +63,7 @@
 
                 <div class="breadCrumb">
                     <ul class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="UserController?menu=Home">Home</a></li>
                         <li><a href="showpage.html">Shows</a></li>
 
                         <li>Show Page</li>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="slideshow">
-                    <img class="slideshowImg" src="img/banner2.png" alt="Banner Pic">
+                    <img class="slideshowImg" src="${pageContext.request.contextPath}/img/banner2.png" alt="Banner Pic">
 
 
                 </div>
@@ -126,7 +126,8 @@
                         <p> Description is 300 chars - adf db cunt dggdb adgb adgb wob bgb gd is gay adgb adgb adb adgb </p>
 
                         <div class="flex-containershowpanel">
-                            <a href="enterAShow.html"><button>Submit Entry</button></a>
+
+                            <a href="ShowController?menu=SubmitEntry"><button>Submit Entry</button></a>
                         </div>
 
                         <div class="flex-containershowpanel">
@@ -136,59 +137,7 @@
                         </div>
                     </div>
 
-                    <div class="panel">
-                        <img src="img/041.jpeg" alt="#####">
-                        <h3>Show Title</h3>
-                        <h3>Date of show</h3>
-                        <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb a</p>
-                        <div class="flex-containershowpanel">
-
-                            <a href="enterAShow.html"><button>Submit Entry</button></a>
-
-                        </div>
-                        <div class="flex-containershowpanel">
-                            <a href="enterAShow.html">
-                                <button>Delete Entry</button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="panel">
-                        <img src="img/083.jpeg" alt="#####">
-                        <h3>Show Title</h3>
-                        <h3>Date of show</h3>
-                        <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-
-                        <div class="flex-containershowpanel">
-
-                            <button>Submit Entry</button>
-
-                        </div>
-                        <div class="flex-containershowpanel">
-
-                            <button>Delete Entry</button>
-
-                        </div>
-                    </div>
-
-                    <div class="panel">
-                        <img src="img/086.jpeg" alt="#####">
-                        <h3>Show Title</h3>
-                        <h3>Date of show</h3>
-                        <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb adb b </p>
-
-
-                        <div class="flex-containershowpanel">
-
-                            <button>Submit Entry</button>
-
-                        </div>
-                        <div class="flex-containershowpanel">
-
-                            <button>Delete Entry</button>
-
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="title">
@@ -424,14 +373,14 @@
                 </div>
 
                 <div class="footer">
-                    <p>Terms and Conditions</p>
-                    <div class="logos">
-                        <a href="#"><img src="img/facebook-logo-circle-transparent.png" alt="Facebook Logo"></a>
-                        <a href="#"><img src="img/twitterTP.png" alt="Twitter Logo"></a>
-                        <a href="#"><img src="img/litTP.png" alt="LIT Logo"></a>
-                        <a href="#"><img src="img/instaTP.jpg.png" alt="Instagram Logo"></a>
+                        <p>Terms and Conditions</p>
+                        <div class="logos">
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/facebook-logo-circle-transparent.png" alt="Facebook Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/twitterTP.png" alt="Twitter Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/litTP.png" alt="LIT Logo"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/img/instaTP.jpg.png" alt="Instagram Logo"></a>
+                        </div>
                     </div>
-                </div>
 
             </div>
         </div>

@@ -126,7 +126,7 @@
                         <p> Description is 300 chars - adf db cunt dggdb adgb adgb wob bgb gd is gay adgb adgb adb adgb </p>
 
                         <div class="flex-containershowpanel">
-                            <a href="enterAShow.html"><button>Submit Entry</button></a>
+                            <a href="ShowController?menu=SubmitEntry"><button>Submit Entry</button></a>
                         </div>
 
                         <div class="flex-containershowpanel">
@@ -143,7 +143,7 @@
                         <p> adf db dbad dggdb adgb adgb agd bgb gd baddb adgb adgb adgb adb adgb adba badgb adb a</p>
                         <div class="flex-containershowpanel">
 
-                            <a href="enterAShow.html"><button>Submit Entry</button></a>
+                            <a href="ShowController?menu=SubmitEntry"><button>Submit Entry</button></a>
 
                         </div>
                         <div class="flex-containershowpanel">

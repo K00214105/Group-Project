@@ -19,14 +19,12 @@
     <body>
 
         <div class="login-page">
-            <div class="logo">
-                <a href="index.html">
-                    <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
-                </a>
+            <div class="logo">               
+                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">
             </div>
             <h1>Edit Profile</h1>
             <div class="form">
-                <form action="UserController" method="get" class="register-form" name="registration">
+                <form action="UserController" method="post" class="register-form" name="registration">
 
                     <br>
                     <label>First name</label>
@@ -51,12 +49,8 @@
                     <input type="text" name="profilePic" id="profilePic" value="${user.profilePic}"/>
                     <br>
 
-                    <label>Banner Image</label>
-                    <input type="text" />
-                    <br>
-
-                    <label>Course</label>
-                    <input type="email" />
+                   <input type="hidden" name="course" value = ${user.course}>
+                   <p>Course :  ${user.course}</p>
                     <br>
 
                     <input type="submit" name="menu" value="Save User Details"/>

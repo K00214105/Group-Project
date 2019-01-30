@@ -18,21 +18,31 @@ import java.util.ArrayList;
  */
 public class Uploads implements Serializable {
 
-    private int uploadID;
+    private int uploadId;
     private String image;
     private String title;
     private String description;
     private int userId;
+    private String username;
+    private int rating;
 
     public Uploads() {
     }
 
-    public Uploads(int uploadID, String image, String title, String description, int userId) {
-        this.uploadID = uploadID;
+    public Uploads(int uploadId, String image, String title, String description, int userId) {
+        this.uploadId = uploadId;
         this.image = image;
         this.title = title;
         this.description = description;
         this.userId = userId;
+    }
+
+    public Uploads(int uploadId, String image, String title, String description) {
+        this.uploadId = uploadId;
+        this.image = image;
+        this.title = title;
+        this.description = description;
+      
     }
     
     public Uploads(String image, String title, String description) {
@@ -42,7 +52,7 @@ public class Uploads implements Serializable {
     }
 
     public Uploads(String image, String title, String description, int userId) {
-         this.image = image;
+        this.image = image;
         this.title = title;
         this.description = description;
         this.userId = userId;
@@ -53,14 +63,14 @@ public class Uploads implements Serializable {
      * @return the uploadID
      */
     public int getUploadID() {
-        return uploadID;
+        return uploadId;
     }
 
     /**
      * @param uploadID the uploadID to set
      */
     public void setUploadID(int uploadID) {
-        this.uploadID = uploadID;
+        this.uploadId = uploadID;
     }
 
     /**
@@ -113,22 +123,51 @@ public class Uploads implements Serializable {
     }
 
     /**
+     * @return the rating
+     */
+    public int getRating() {
+        return rating;
+    }
+
+    /**
+     * @param rating the rating to set
+     */
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    /**
      * @param userId the userId to set
      */
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    
-     public ArrayList<Uploads> getAllUploads() {
 
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    public ArrayList<Uploads> getAllUploads() {
+        System.out.println("get all uploads");
         ArrayList allUploads = new ArrayList<>();
 
         Connection connection = DatabaseUtilityClass.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
-        String query = "Select * from uploads";
-        
+        String query = "SELECT `uploadId`,`image`,`title`,`description`,uploads.user_id,users.username, rating\n"
+                + "FROM `uploads`join users on uploads.user_id = users.user_id WHERE 1";
+
         try {
 
             ps = connection.prepareStatement(query);
@@ -139,44 +178,80 @@ public class Uploads implements Serializable {
                 u.setImage(resultSet.getString("image"));
                 u.setTitle(resultSet.getString("title"));
                 u.setDescription(resultSet.getString("description"));
-                u.setUserId(resultSet.getInt("userId"));
+                u.setUserId(resultSet.getInt("user_Id"));
+                u.setUsername(resultSet.getString("username"));
+                u.setRating(resultSet.getInt("rating"));
                 allUploads.add(u);
             }
 
             connection.close();
-            
 
         } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
-        
 
         return allUploads;
     }
-    
-public Uploads saveToDatabase() {
-         System.out.println("In upload save to db");
+
+    public ArrayList<Uploads> getUserUploads(int id) {
+        System.out.println("get user uploads");
+        ArrayList userUploads = new ArrayList<>();
+
         Connection connection = DatabaseUtilityClass.getConnection();
-         
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        String query = "select * from uploads where user_Id in( select user_id from users where user_Id=?); ";
+
+        try {
+
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, id);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                Uploads u = new Uploads();
+                u.setUploadID(resultSet.getInt("uploadId"));
+                u.setImage(resultSet.getString("image"));
+                u.setTitle(resultSet.getString("title"));
+                u.setDescription(resultSet.getString("description"));
+                u.setUserId(resultSet.getInt("user_Id"));
+                 u.setRating(resultSet.getInt("rating"));
+                userUploads.add(u);
+            }
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+        return userUploads;
+    }
+
+    public Uploads saveToDatabase() {
+        System.out.println("In upload save to db");
+        Connection connection = DatabaseUtilityClass.getConnection();
+
         String sql = "INSERT INTO uploads (image,title,description, user_Id) VALUES (?,?,?,?);";
         String query = "SELECT LAST_INSERT_ID()";
-        
+
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             PreparedStatement ps2 = connection.prepareStatement(query);
-            
+
             ps.setString(1, this.getImage());
             ps.setString(2, this.getTitle());
             ps.setString(3, this.getDescription());
             ps.setInt(4, this.getUserId());
-System.out.println("save to db id: " +this.getUserId());
-            ps.executeUpdate();  
+            System.out.println("save to db id: " + this.getUserId());
+            ps.executeUpdate();
             ResultSet rs = ps2.executeQuery();
-            while(rs.next()){
-                this.uploadID = rs.getInt(1);
+            while (rs.next()) {
+                this.uploadId = rs.getInt(1);
             }
-               
+
             connection.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -184,10 +259,11 @@ System.out.println("save to db id: " +this.getUserId());
         return this;
     }
 
-
-public Uploads getUploadDetails(int id) {
-        
+    public Uploads getUploadDetails(int id) {
+        System.out.println("get UD");
+        System.out.println(id);
         Uploads u = null;
+        
         Connection connection = DatabaseUtilityClass.getConnection();
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -195,28 +271,30 @@ public Uploads getUploadDetails(int id) {
         String query = "Select * from uploads where uploadId = ?";
 
         try {
+          
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
-            
+
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
-                u = new Uploads();
-                u.setUploadID(resultSet.getInt("uploadId"));
-                u.setImage(resultSet.getString("image"));
-                u.setTitle(resultSet.getString("title"));
-                u.setDescription(resultSet.getString("description"));
-                u.setUserId(resultSet.getInt("user_Id"));
-                return u;
+                 
+                Uploads u2 = new Uploads();
+                u2.setUploadID(resultSet.getInt("uploadId"));
+                u2.setImage(resultSet.getString("image"));
+                u2.setTitle(resultSet.getString("title"));
+                u2.setDescription(resultSet.getString("description"));
+                u2.setUserId(resultSet.getInt("user_Id"));
+                 u2.setRating(resultSet.getInt("rating"));
+                System.out.println(u2.toString());
+                return u2;
             }
 
             connection.close();
-            
 
         } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
-        
 
         return u;
     }
@@ -233,11 +311,13 @@ public Uploads getUploadDetails(int id) {
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, id);
-            
+
             int i = ps.executeUpdate();
-            if (i == 0) return false;
+            if (i == 0) {
+                return false;
+            }
             connection.close();
-            
+
         } catch (SQLException ex) {
             System.out.println(ex);
             return false;
@@ -245,35 +325,64 @@ public Uploads getUploadDetails(int id) {
         return true;
     }
 
-    
     public Uploads updateDateabase(int uploadId, String image, String title, String description) {
         Connection connection = DatabaseUtilityClass.getConnection();
-         
+        System.out.println("in update db uplads");
         this.image = image;
         this.title = title;
         this.description = description;
-       
-       
-         
-        String sql = "UPDATE uploads SET image = ?, title = ?, description = ? WHERE uploadId = ? " ;
-        
-         try {
+        this.uploadId = uploadId;
+
+        String sql = "UPDATE uploads SET image = ?, title = ?, description = ? WHERE uploadId = ? ";
+
+        try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            
-            
+
             ps.setString(1, this.image);
             ps.setString(2, this.title);
             ps.setString(3, this.description);
-           
-         
+              ps.setInt(4, this.uploadId);
+
             System.out.println("ps" + ps.toString());
             ps.executeUpdate();
-            
-                           
+
             connection.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
         return this;
+    }
+
+    public Uploads getSelectedUpload(int nid) {
+        Connection connection = DatabaseUtilityClass.getConnection();
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+
+        String query = "select * from uploads where uploadId = ?; ";
+        Uploads u = new Uploads();
+        try {
+
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, nid);
+            resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+
+                u.setUploadID(resultSet.getInt("uploadId"));
+                u.setImage(resultSet.getString("image"));
+                u.setTitle(resultSet.getString("title"));
+                u.setDescription(resultSet.getString("description"));
+                u.setUserId(resultSet.getInt("user_Id"));
+                 u.setRating(resultSet.getInt("rating"));
+            }
+
+            connection.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return null;
+        }
+
+        return u;
+
     }
 }

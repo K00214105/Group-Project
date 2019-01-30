@@ -27,6 +27,7 @@ li {
 .loginSignUp {
     text-align: right;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .loginSignUp a {
@@ -37,6 +38,7 @@ li {
 
 .loginSignUp img {
     width: 15px;
+    height: 35px;
     padding-left: 1px;
     padding-right: 10px
 }

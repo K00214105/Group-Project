@@ -6,7 +6,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,14 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
+import model.Uploads;
 import model.User;
-import org.jboss.weld.config.ConfigurationKey;
 
 /**
  *
- * @author Elizabeth.Bourke
+ * @author Daniel
+ * 
  */
 public class UserController extends HttpServlet {
 
@@ -37,6 +35,7 @@ public class UserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
@@ -44,25 +43,27 @@ public class UserController extends HttpServlet {
         }
 
         String menu = request.getParameter("menu");
-
+        Uploads uploads = new Uploads();
+        
         switch (menu) {
             case "Login":
                 gotoPage("/login.jsp", request, response);
                 break;
 
             case "SignUp":
-                System.out.println("in switch sign up");
                 gotoPage("/AddUser.jsp", request, response);
                 break;
 
             case "Save":
-                System.out.println("switch save");
                 ProcessSave(request, session);
+                uploads = new Uploads();
+                ArrayList<Uploads> alluploads2 = new ArrayList<>();
+                alluploads2 = uploads.getAllUploads();
+                session.setAttribute("allUploads", alluploads2);
                 gotoPage("/userHome.jsp", request, response);
                 break;
 
             case "Logout":
-                System.out.println("Log out");
                 session.invalidate();
                 gotoPage("/home.jsp", request, response);
                 break;
@@ -70,6 +71,8 @@ public class UserController extends HttpServlet {
             case "Process Login":
                 boolean validLogin = ProcessLogin(request, session);
                 System.out.println("in process login");
+                User use = (User) session.getAttribute("user");
+                System.out.println(use.getAccountType());
 
                 if (!validLogin) {
                     System.out.println("not valid login");
@@ -77,8 +80,18 @@ public class UserController extends HttpServlet {
                     session.setAttribute("message", message);
                     gotoPage("/login.jsp", request, response);
                 } else {
-                    System.out.println("Logged in");
-                    gotoPage("/userHome.jsp", request, response);
+
+                    if ("Student".equals(use.getAccountType())) {
+                        uploads = new Uploads();
+                        ArrayList<Uploads> alluploads = new ArrayList<>();
+                        alluploads = uploads.getAllUploads();
+                        session.setAttribute("allUploads", alluploads);
+                        gotoPage("/userHome.jsp", request, response);
+                    }
+
+                    if ("Admin".equals(use.getAccountType())) {
+                        gotoPage("/adminArea.jsp", request, response);
+                    }
                 }
                 break;
 
@@ -97,20 +110,29 @@ public class UserController extends HttpServlet {
                 break;
 
             case "Delete User":
-                System.out.println("case delete confirm");
                 ProcessDelete(request, user, session);
                 session.invalidate();
                 gotoPage("/home.jsp", request, response);
                 break;
 
             case "Get User Details":
-
                 UserDetails(request, user, session);
-
                 gotoPage("/userHome.jsp", request, response);
                 break;
-                
-            
+
+            case "Profile":
+                gotoPage("/userProfile.jsp", request, response);
+                break;
+
+            case "Home":
+                System.out.println("Home");
+                uploads = new Uploads();
+                ArrayList<Uploads> alluploads = new ArrayList<>();
+                alluploads = uploads.getAllUploads();
+                session.setAttribute("allUploads", alluploads);
+               
+                gotoPage("/userHome.jsp", request, response);
+                break;
 
             default:
                 gotoPage("/invalid.jsp", request, response);
@@ -126,11 +148,12 @@ public class UserController extends HttpServlet {
         String profilePic = request.getParameter("profilePic");
         String password = request.getParameter("password");
         String bio = request.getParameter("bio");
+        String course = request.getParameter("course");
 
         int UserID = user.getUserid();
         System.out.println("in process update");
 
-        User u = user.updateDateabase(UserID, fName, lName, email, username, profilePic, password, bio);
+        User u = user.updateDatabase(UserID, fName, lName, email, username, profilePic, password, bio, course);
         // put it back in the sesssion
         System.out.println("after update");
         session.setAttribute("user", u);
@@ -154,7 +177,6 @@ public class UserController extends HttpServlet {
     }
 
     private void ProcessSave(HttpServletRequest request, HttpSession session) {
-
         System.out.println("in Process save");
         String fName = request.getParameter("fName");
         String lName = request.getParameter("lName");
@@ -173,7 +195,6 @@ public class UserController extends HttpServlet {
     }
 
     private void ProcessDelete(HttpServletRequest request, User user, HttpSession session) {
-
         int UserID = user.getUserid();
         System.out.println("in  delete");
 
@@ -239,5 +260,4 @@ public class UserController extends HttpServlet {
         session.setAttribute("user", u);
     }
 
-     
 }

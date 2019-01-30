@@ -1,8 +1,4 @@
-<%-- 
-    Document   : register
-    Created on : 07-Dec-2016, 21:39:41
-    Author     : AMarie
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,18 +15,16 @@
     </head>
     <body>
         <div class="login-page">
-            <div class="logo">
-                <a href="index.html">
-                    <img class="logohome" src="img/logo1.png" alt="LIT Gallery Logo">
-                </a>
+            <div class="logo">                
+                    <img class="logohome" src="${pageContext.request.contextPath}/img/logo1.png" alt="LIT Gallery Logo">             
             </div>
-            <h1>Sign Up</h1>
+            <h1>Upload Item</h1>
             <div class="form">
-                <form action="UploadController" method="get" class="register-form" name="registration">
+                <form action="UploadController" method="post" class="register-form" enctype="multipart/form-data" name="registration"  >
 
                     <br>
-                    <label>Image</label>
-                    <input type="text" name="image" id="image"/>
+                    <label for="filename_1">Image: </label>
+                    <input id="filename_1" type="file" name="filename_1" size="50"/>
                     <br>
                     <label>Title</label>
                     <input type="text" name="title" id="title"/>
@@ -39,10 +33,10 @@
                     <input type="text" name="description" id="description"/>
                     <br>
                     
-               
+                <input type="hidden" name="menu" value="Save Upload">
                 <input type="submit" name="menu" value="Save Upload" />
                 <input type="reset" />
- </form>
+            </form>
             </div>
         </div
         <script

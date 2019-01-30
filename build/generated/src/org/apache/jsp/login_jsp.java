@@ -60,10 +60,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("\n");
       out.write("        <div class=\"login-page\">\n");
-      out.write("            <div class=\"logo\">\n");
-      out.write("                <a href=\"index.html\">\n");
-      out.write("                    <img class=\"logohome\" src=\"img/logo1.png\" alt=\"LIT Gallery Logo\">\n");
-      out.write("                </a>\n");
+      out.write("            <div class=\"logo\">             \n");
+      out.write("               <img class=\"logohome\" src=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/img/logo1.png\" alt=\"LIT Gallery Logo\">             \n");
       out.write("            </div>\n");
       out.write("            <h1>Sign In</h1>\n");
       out.write("            <div class=\"form\">\n");
@@ -73,9 +73,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <input type=\"text\" name=\"username\" id=\"username\"/>\n");
       out.write("                    <br>\n");
       out.write("                    <label>Password</label>\n");
-      out.write("                    <input type=\"password\" name=\"password\" id=\"passwood\"/>\n");
+      out.write("                    <input type=\"password\" name=\"password\" id=\"password\"/>\n");
       out.write("                    <br>\n");
-      out.write("                    <input type=\"submit\" name=\"menu\" value=\"Process Login\"  />\n");
+      out.write("                    <input type=\"submit\" name=\"menu\" value=\"Process Login\"/>\n");
       out.write("\n");
       out.write("                </form>\n");
       out.write("            </div>\n");

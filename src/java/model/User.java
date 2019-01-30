@@ -17,6 +17,7 @@ public class User implements Serializable {
     private String fName;
     private String lName;
     private String email;
+    private String accountType;
     private String username;
     private String password;
     private String bio;
@@ -51,14 +52,25 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.bio = bio;
-       
 
     }
 
-   
-
-   public User(int userid) {
+    public User(int userid) {
         this.userid = userid;
+    }
+
+    /**
+     * @return the accountType
+     */
+    public String getAccountType() {
+        return accountType;
+    }
+
+    /**
+     * @param accountType the accountType to set
+     */
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     /**
@@ -172,8 +184,8 @@ public class User implements Serializable {
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
     }
-    
-      public String getCourse() {
+
+    public String getCourse() {
         return course;
     }
 
@@ -204,11 +216,13 @@ public class User implements Serializable {
                 this.setfName(resultSet.getString("f_Name"));
                 this.setlName(resultSet.getString("l_Name"));
                 this.setEmail(resultSet.getString("email"));
+                this.setAccountType(resultSet.getString("accountType"));
                 this.setUsername(resultSet.getString("username"));
                 this.setProfilePic(resultSet.getString("profile_Pic"));
                 this.setPassword(resultSet.getString("password"));
                 this.setBio(resultSet.getString("bio"));
-
+                this.setCourse(resultSet.getString("course"));
+                System.out.println( "course " + resultSet.getString("course"));
             }
 
             connection.close();
@@ -239,6 +253,7 @@ public class User implements Serializable {
             ps.setString(6, this.getPassword());
             ps.setString(7, this.getBio());
             ps.setString(8, this.getCourse());
+            
             System.out.println(ps);
 
             ps.executeUpdate();
@@ -265,7 +280,7 @@ public class User implements Serializable {
         try {
             ps = connection.prepareStatement(query);
             ps.setInt(1, userId);
-            
+
             resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 u = new User();
@@ -273,41 +288,45 @@ public class User implements Serializable {
                 u.setfName(resultSet.getString("f_name"));
                 u.setlName(resultSet.getString("l_name"));
                 u.setEmail(resultSet.getString("email"));
+                u.setAccountType(resultSet.getString("accountType"));
                 u.setUsername(resultSet.getString("username"));
-                u.setPassword(resultSet.getString("password"));    
+                u.setPassword(resultSet.getString("password"));
                 u.setBio(resultSet.getString("bio"));
                 u.setProfilePic(resultSet.getString("profile_pic"));
-                
+                u.setCourse(resultSet.getString("course"));
                 return u;
             }
-            
+
             connection.close();
-            
 
         } catch (SQLException ex) {
             System.out.println(ex);
             return null;
         }
-        
 
         return u;
     }
 //
+
     public User deleteDateabase(int UserID) {
-       Connection connection = DatabaseUtilityClass.getConnection();
-         System.out.println("in delete DB USER.java");
-        String sql = "DELETE Users FROM users WHERE user_id = ? " ;
-        
-         try {
+        Connection connection = DatabaseUtilityClass.getConnection();
+        System.out.println("in delete DB ");
+        String sql = "DELETE Users FROM users WHERE user_id = ? ";
+        String sql2 = "Delete Uploads From uploads Where user_id =?";
+        String sql3 = "Delete Enteries From enteries Where upload_id = (select uploadId from uploads where user_id = ?)";
+        try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            
-            
+            PreparedStatement ps2 = connection.prepareStatement(sql2);
+            PreparedStatement ps3 = connection.prepareStatement(sql3);
+
             ps.setInt(1, this.getUserid());
-           
-        
+            ps2.setInt(1, this.getUserid());
+            ps3.setInt(1, this.getUserid());
+
+            ps3.executeUpdate();
+            ps2.executeUpdate();
             ps.executeUpdate();
-            
-                           
+
             connection.close();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -315,7 +334,7 @@ public class User implements Serializable {
         return this;
     }
 
-    public User updateDateabase(int userid, String fname, String lName, String email, String username, String profilePic, String password, String bio) {
+    public User updateDatabase(int userid, String fname, String lName, String email, String username, String profilePic, String password, String bio, String course) {
         Connection connection = DatabaseUtilityClass.getConnection();
 
         this.setfName(fname);
@@ -325,8 +344,9 @@ public class User implements Serializable {
         this.setProfilePic(profilePic);
         this.setPassword(password);
         this.setBio(bio);
+        this.setCourse(course);
 
-        String sql = "UPDATE users SET f_name = ?, l_name = ?, email = ?, username = ?, profile_pic = ?, password = ?, bio = ? WHERE user_id = ? ";
+        String sql = "UPDATE users SET f_name = ?, l_name = ?, email = ?, username = ?, profile_pic = ?, password = ?, bio = ?, course = ? WHERE user_id = ? ";
 
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -338,7 +358,8 @@ public class User implements Serializable {
             ps.setString(5, this.getProfilePic());
             ps.setString(6, this.getPassword());
             ps.setString(7, this.getBio());
-            ps.setInt(8, this.getUserid());
+            ps.setString(8, this.getCourse());
+            ps.setInt(9, this.getUserid());
             System.out.println("ps" + ps.toString());
             ps.executeUpdate();
 
@@ -375,9 +396,7 @@ public class User implements Serializable {
 //        }
 //        return this;
 //    }
-
     /**
      * @return the course
      */
-  
 }
